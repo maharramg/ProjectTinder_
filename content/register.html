@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+
+    <title>Register Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body class="text-center">
+<form class="form-signin" method="post">
+    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
+
+    <label for="name" class="sr-only">Name</label>
+    <input type="text" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
+
+    <label for="surname" class="sr-only">Surname</label>
+    <input type="text" name="surname" id="surname" class="form-control" placeholder="Surname" required autofocus>
+
+    <label for="gender" class="sr-only">Gender</label>
+    <select id="gender" name="gender" class="form-control" style="height: 45px;" required autofocus>
+        <option selected hidden value ="none">Choose one...</option>
+        <option value ="male" name="male">Male</option>
+        <option value ="female" name="female">Female</option>
+        <option value ="other" name="other">Other</option>
+    </select>
+
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Register">
+    <br>
+    Already have an account?
+    <a href="./login" name="signin" type="button">Sign in</a>
+    <p class="mt-5 mb-3 text-muted">&copy; Tinder 2019<br><br> Created by: <br>Maharram Guliyev <br>Javid Mammadli <br>Rafael Kadyroff</p>
+</form>
+</body>
+</html>
