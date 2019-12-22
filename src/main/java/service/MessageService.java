@@ -2,8 +2,8 @@ package service;
 
 import additional.Message;
 import additional.User;
-import dao.MessagesDAO;
-import dao.UsersDAO;
+import dao.MessageDAO;
+import dao.UserDAO;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 
 
 public class MessageService {
-    private MessagesDAO messages;
-    private UsersDAO users;
+    private MessageDAO messages;
+    private UserDAO users;
 
     public MessageService() {
-        users = new UsersDAO();
-        messages = new MessagesDAO();
+        users = new UserDAO();
+        messages = new MessageDAO();
     }
 
     private int getLastLocalId(int sender, int receiver) {

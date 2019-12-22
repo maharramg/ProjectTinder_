@@ -1,17 +1,18 @@
 package service;
 
 import additional.User;
-import dao.UsersDAO;
+import dao.UserDAO;
 
 public class LoginService {
-    private UsersDAO users;
+    private UserDAO users;
     private boolean isLogged;
     public LoginService() {
         isLogged = false;
-        users = new UsersDAO();
+        users = new UserDAO();
     }
 
     public int check(User user) throws Exception {
+        users.read();
         for (User us : users) {
             if (us.checkEqual(user)) {
                 isLogged = true;

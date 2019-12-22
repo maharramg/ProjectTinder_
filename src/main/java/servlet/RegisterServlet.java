@@ -31,10 +31,11 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         registerService.register(new User(
-                req.getParameter("email"),
+                req.getParameter("username"),
                 req.getParameter("name"),
                 req.getParameter("surname"),
                 req.getParameter("password"),
+                req.getParameter("email"),
                 req.getParameter("gender"),
                 ""));
         resp.sendRedirect("/login/");

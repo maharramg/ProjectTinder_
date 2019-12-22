@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class UsersDAO implements DAO<User> {
+public class UserDAO implements DAO<User> {
     private List<User> users;
 
-    public UsersDAO() {
+    public UserDAO() {
         read();
     }
 
@@ -31,8 +31,8 @@ public class UsersDAO implements DAO<User> {
             while (resultSet.next()) {
                 users.add(new User(resultSet.getInt("id"), resultSet.getString("username"),
                         resultSet.getString("name"), resultSet.getString("surname"),
-                        resultSet.getString("password"), resultSet.getString("gender"),
-                        resultSet.getString("imgurl")));
+                        resultSet.getString("password"), resultSet.getString("email"),
+                        resultSet.getString("gender"), resultSet.getString("imgurl")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,9 +71,9 @@ public class UsersDAO implements DAO<User> {
     public void add(User user) {
         try {
             Connection conn = DbConnection.getConnection();
-            final String SQLQ = "INSERT INTO users (username, password, gender, profession, imgurl, name, surname) values (?,?,?,?,?,?,?)";
+            final String SQLQ = "INSERT INTO users (email, password, gender, imgurl, name, surname, username) values (?,?,?,?,?,?,?,?)";
             PreparedStatement insertUser = conn.prepareStatement(SQLQ);
-            insertUser.setString(1, user.getUsername());
+            insertUser.setString(1, user.getEmail());
             insertUser.setString(2, user.getPassword());
             insertUser.setString(3, user.getGender());
             if (user.getImgURL().equals(""))
@@ -82,6 +82,7 @@ public class UsersDAO implements DAO<User> {
                 insertUser.setString(4, user.getImgURL());
             insertUser.setString(5, user.getName());
             insertUser.setString(5, user.getSurname());
+            insertUser.setString(6, user.getUsername());
 
             insertUser.executeUpdate();
             users.add(user);

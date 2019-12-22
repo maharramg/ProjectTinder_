@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MessagesDAO implements DAO<Message> {
+public class MessageDAO implements DAO<Message> {
     private List<Message> messages;
 
-    public MessagesDAO() {
+    public MessageDAO() {
         this.messages = new ArrayList<>();
         read();
     }

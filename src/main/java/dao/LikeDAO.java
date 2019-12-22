@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LikesDAO implements DAO<Like> {
+public class LikeDAO implements DAO<Like> {
     private List<Like> likes;
 
-    public LikesDAO() {
+    public LikeDAO() {
         likes = new LinkedList<>();
         read();
     }
@@ -32,8 +32,8 @@ public class LikesDAO implements DAO<Like> {
             while (resultSet.next()) {
                 likes.add(new Like(
                         resultSet.getInt("id"),
-                        resultSet.getInt("user_likes"),
-                        resultSet.getInt("user_liked")));
+                        resultSet.getInt("user_from"),
+                        resultSet.getInt("user_to")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,10 +69,10 @@ public class LikesDAO implements DAO<Like> {
     public void add(Like like) {
         try {
             Connection conn = DbConnection.getConnection();
-            final String SQLQ = "INSERT INTO likes (user_likes, user_liked) values (?,?)";
+            final String SQLQ = "INSERT INTO likes (user_from, user_to) values (?,?)";
             PreparedStatement insertLikes = conn.prepareStatement(SQLQ);
-            insertLikes.setInt(1, like.getUser_likes());
-            insertLikes.setInt(2, like.getUser_liked());
+            insertLikes.setInt(1, like.getUser_from());
+            insertLikes.setInt(2, like.getUser_to());
             insertLikes.executeUpdate();
             likes.add(like);
         } catch (SQLException e) {

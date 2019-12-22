@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public interface DAO<T> extends Iterable<T> {
+
     void read() throws SQLException;
+
+    void add(T data);
+
+    T get(int id);
 
     List<T> getDatabase();
 
@@ -15,9 +20,6 @@ public interface DAO<T> extends Iterable<T> {
 
     void clear() throws SQLException;
 
-    void add(T data);
-
-    T get(int id);
-
     Stream<T> stream();
+
 }

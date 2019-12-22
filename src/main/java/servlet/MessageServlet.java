@@ -14,12 +14,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class MessagesServlet extends HttpServlet {
+public class MessageServlet extends HttpServlet {
     private int senderId;
     private int receiverId;
     private MessageService service;
 
-    public MessagesServlet(MessageService service) {
+    public MessageServlet(MessageService service) {
         this.service = service;
     }
 

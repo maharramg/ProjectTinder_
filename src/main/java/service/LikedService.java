@@ -2,19 +2,19 @@ package service;
 
 import additional.Like;
 import additional.User;
-import dao.LikesDAO;
-import dao.UsersDAO;
+import dao.LikeDAO;
+import dao.UserDAO;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LikedService {
-    private LikesDAO likes;
-    private UsersDAO users;
+    private LikeDAO likes;
+    private UserDAO users;
 
     public LikedService() {
-        users = new UsersDAO();
-        likes = new LikesDAO();
+        users = new UserDAO();
+        likes = new LikeDAO();
     }
 
     public List<User> getLikedUsers(int localId) {
@@ -27,7 +27,7 @@ public class LikedService {
     public List<Like> getLikedUserIds(int localId) {
         likes.read();
         return likes.stream()
-                .filter(oneLike -> oneLike.getUser_likes() == localId)
+                .filter(oneLike -> oneLike.getUser_from() == localId)
                 .collect(Collectors.toList());
     }
 

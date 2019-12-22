@@ -10,10 +10,10 @@ import java.sql.SQLException;
 public class RegisterService {
     public void register(User user) {
         try {
-            final String SQLQ = "INSERT INTO users(username, password, gender, imgurl, name, surname) VALUES (?,?,?,?,?,?)";
+            final String SQLQ = "INSERT INTO users(email, password, gender, imgurl, name, surname, username) VALUES (?,?,?,?,?,?,?)";
             Connection connection = DbConnection.getConnection();
             PreparedStatement insertUser = connection.prepareStatement(SQLQ);
-            insertUser.setString(1, user.getUsername());
+            insertUser.setString(1, user.getEmail());
             insertUser.setString(2, user.getPassword());
             insertUser.setString(3, user.getGender());
             if (user.getImgURL().equals(""))
@@ -22,6 +22,7 @@ public class RegisterService {
                 insertUser.setString(4, user.getImgURL());
             insertUser.setString(5, user.getName());
             insertUser.setString(6, user.getSurname());
+            insertUser.setString(7, user.getUsername());
             insertUser.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

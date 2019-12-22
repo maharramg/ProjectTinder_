@@ -2,16 +2,16 @@ package service;
 
 import additional.Like;
 import additional.User;
-import dao.LikesDAO;
-import dao.UsersDAO;
+import dao.LikeDAO;
+import dao.UserDAO;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LikeService {
-    private UsersDAO users;
-    private LikesDAO likes;
+    private UserDAO users;
+    private LikeDAO likes;
     private List<Integer> userIds;
     private boolean liked;
     private int id;
@@ -22,14 +22,14 @@ public class LikeService {
 
     public LikeService() {
         liked = false;
-        likes = new LikesDAO();
-        users = new UsersDAO();
+        likes = new LikeDAO();
+        users = new UserDAO();
         userIds = users.getAllId();
     }
 
-    public void like(int user_liked) {
+    public void like(int user_to) {
         liked = true;
-        Like like = new Like(id, user_liked);
+        Like like = new Like(id, user_to);
         if (!likes.getDatabase().contains(like))
             likes.add(like);
     }
@@ -51,8 +51,8 @@ public class LikeService {
         return liked;
     }
 
-    public User getNext(int user_liked) throws IndexOutOfBoundsException {
-        userIds.remove(Integer.valueOf(user_liked));
+    public User getNext(int user_to) throws IndexOutOfBoundsException {
+        userIds.remove(Integer.valueOf(user_to));
         if (!isLast())
             return users.get(userIds.get(0));
         else if (isLiked())
